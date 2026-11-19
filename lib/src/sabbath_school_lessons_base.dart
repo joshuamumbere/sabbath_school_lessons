@@ -2,7 +2,7 @@
 library;
 
 /// Current package version, kept in sync with `pubspec.yaml`.
-const String packageVersion = '0.2.0';
+const String packageVersion = '0.2.1';
 
 /// Default GitHub owner of the content repository read by
 /// [SabbathSchoolClient] (your fork of Adventech/sabbath-school-lessons).

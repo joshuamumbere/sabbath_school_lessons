@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.2.1
+
+- Comprehensive README: installation, usage guide, configuration, API
+  summary, and scale architecture documentation.
+- Added pub.dev `topics` for better discoverability.
+
 ## 0.2.0
 
 - Committed index architecture: `index/languages.json` and `index/<lang>.json`
