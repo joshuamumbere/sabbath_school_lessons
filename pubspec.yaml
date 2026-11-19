@@ -4,7 +4,7 @@ description: >-
   Fetches quarterly Sabbath School lessons by language, with lesson days,
   PDFs, audio and video manifests.
 version: 0.1.0
-repository: https://github.com/MasambaFoundation/sabbath_school_lessons
+repository: https://github.com/joshuamumbere/sabbath_school_lessons
 
 environment:
   sdk: ^3.13.3

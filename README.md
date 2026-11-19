@@ -18,7 +18,7 @@ dependencies:
   sabbath_school_lessons:
     path: ../sabbath_school_lessons   # during development
     # git:
-    #   url: https://github.com/MasambaFoundation/sabbath_school_lessons.git
+    #   url: https://github.com/joshuamumbere/sabbath_school_lessons.git
 ```
 
 ## Usage
@@ -84,7 +84,6 @@ raw.githubusercontent.com, which is not rate limited the same way.
 
 ## Publishing
 
-Before `dart pub publish` (or `flutter pub publish`), set the final
-`repository`/`homepage` URLs in `pubspec.yaml` and update this README with
+Before `dart pub publish` (or `flutter pub publish`), update this README with
 your package name and license notes. The lesson **content** itself is
 © General Conference of Seventh-day Adventists® — this package only reads it.
