@@ -15,8 +15,15 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
+  sabbath_school_lessons: ^0.2.0
+```
+
+During package development you can also depend on it locally or from git:
+
+```yaml
+dependencies:
   sabbath_school_lessons:
-    path: ../sabbath_school_lessons   # during development
+    path: ../sabbath_school_lessons   # local development
     # git:
     #   url: https://github.com/joshuamumbere/sabbath_school_lessons.git
 ```
