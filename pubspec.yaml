@@ -5,6 +5,12 @@ description: >-
   PDFs, audio and video manifests.
 version: 0.2.0
 repository: https://github.com/joshuamumbere/sabbath_school_lessons
+topics:
+  - sabbath-school
+  - adventist
+  - lessons
+  - bible
+  - api-client
 
 environment:
   sdk: ^3.13.3
