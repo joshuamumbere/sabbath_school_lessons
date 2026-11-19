@@ -1,0 +1,90 @@
+# sabbath_school_lessons
+
+A Dart/Flutter client package for the
+[sabbath-school-lessons](https://github.com/Adventech/sabbath-school-lessons)
+content repository (or any fork of it).
+
+It fetches quarterly Sabbath School lessons by language and exposes them as
+typed models: quarters, lessons, daily readings, plus audio/PDF/video
+manifests. Directory listings use the GitHub Contents API; file contents are
+fetched from raw.githubusercontent.com.
+
+## Getting started
+
+Add the package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  sabbath_school_lessons:
+    path: ../sabbath_school_lessons   # during development
+    # git:
+    #   url: https://github.com/MasambaFoundation/sabbath_school_lessons.git
+```
+
+## Usage
+
+```dart
+import 'package:sabbath_school_lessons/sabbath_school_lessons.dart';
+
+final client = SabbathSchoolClient(
+  owner: 'joshuamumbere',          // your fork
+  repo: 'sabbath-school-lessons',
+  branch: 'stage',
+  // githubToken: '...',          // optional, raises API rate limit to 5000/h
+);
+
+// Languages and quarters
+final languages = await client.listLanguages();
+final quarters = await client.listQuarterIds('en');
+
+// Quarter metadata (title, dates, theme colors, credits)
+final quarter = await client.quarter('en', '2026-01');
+print('${quarter.title} — ${quarter.humanDate}');
+
+// Lessons and daily readings
+final lessons = await client.quarterLessons('en', '2026-01');
+final day = await client.day('en', '2026-01', 1, 1);
+print(day.title);
+print(day.markdown);
+
+// Extra features per lesson: teacher-comments, inside-story, hope-ss
+final teacherComments = await client.feature('en', '2026-01', 1, 'teacher-comments');
+
+// Media manifests
+final audio = await client.audio('en', '2026-01', lesson: 1, day: 1);
+final pdfs = await client.pdf('en', '2026-01', lesson: 1);
+final videos = await client.video('en', '2026-01', lesson: 1);
+```
+
+Note on manifest shapes: some quarters target media per lesson
+(`en/2026-01/01`), newer ones per day (`en/2026-04/01/01`); `audio(lesson: 1)`
+matches both, and `day: 1` narrows to a single day.
+
+Cover images are at `src/<lang>/<quarter>/cover.png`; you can build the URL
+yourself with `client.rawUri('<lang>/<quarter>/cover.png')`.
+
+## Data source layout
+
+| Path | Contents |
+| --- | --- |
+| `src/<lang>/` | one folder per language |
+| `src/<lang>/<quarter>/` | one folder per quarter, e.g. `2026-01` |
+| `<quarter>/info.yml` | title, dates, theme colors, credits |
+| `<quarter>/NN/info.yml` | lesson title and week dates |
+| `<quarter>/NN/1..7.md` | daily readings (markdown with front matter) |
+| `<quarter>/NN/teacher-comments.md`, `inside-story.md`, `hope-ss.md` | optional features |
+| `<quarter>/audio.yml`, `pdf.yml`, `video.yml` | media manifests keyed by `target: <lang>/<quarter>/<lesson>` |
+
+## Rate limits
+
+The GitHub Contents API allows 60 unauthenticated requests/hour. A full app
+session only needs a handful of listing calls, but pass a `githubToken`
+to raise the limit to 5000/hour. File contents come from
+raw.githubusercontent.com, which is not rate limited the same way.
+
+## Publishing
+
+Before `dart pub publish` (or `flutter pub publish`), set the final
+`repository`/`homepage` URLs in `pubspec.yaml` and update this README with
+your package name and license notes. The lesson **content** itself is
+© General Conference of Seventh-day Adventists® — this package only reads it.
