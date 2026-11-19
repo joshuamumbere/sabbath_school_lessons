@@ -14,6 +14,7 @@
 /// ```
 library;
 
+export 'src/cache.dart';
 export 'src/client.dart';
 export 'src/models.dart';
 export 'src/parsers.dart' show parseDate, parseDayMarkdown, parseLesson, parseMedia, parseQuarter;

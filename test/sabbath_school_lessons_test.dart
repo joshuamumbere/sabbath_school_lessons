@@ -9,7 +9,7 @@ void main() {
     expect(client.repo, 'sabbath-school-lessons');
     expect(client.branch, 'stage');
     expect(
-      client.rawUri('en/2026-01/info.yml').toString(),
+      client.rawUri('src/en/2026-01/info.yml').toString(),
       'https://raw.githubusercontent.com/joshuamumbere/sabbath-school-lessons/'
       'stage/src/en/2026-01/info.yml',
     );
@@ -27,7 +27,7 @@ void main() {
     );
 
     expect(
-      client.rawUri('en/info.yml').toString(),
+      client.rawUri('src/en/info.yml').toString(),
       'https://raw.githubusercontent.com/Adventech/sabbath-school-lessons/'
       'master/src/en/info.yml',
     );

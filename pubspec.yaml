@@ -3,7 +3,7 @@ description: >-
   A client library for the sabbath-school-lessons content repository.
   Fetches quarterly Sabbath School lessons by language, with lesson days,
   PDFs, audio and video manifests.
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/joshuamumbere/sabbath_school_lessons
 
 environment:
